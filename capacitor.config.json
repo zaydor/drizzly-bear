@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "drizzly-bear",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

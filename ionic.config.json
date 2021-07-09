@@ -1,0 +1,7 @@
+{
+  "name": "drizzly-bear",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
