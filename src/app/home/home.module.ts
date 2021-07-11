@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 import { HomePageRoutingModule } from './home-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { DrizzlyToolbarModule } from '../drizzly-toolbar/drizzly-toolbar.module';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    DrizzlyToolbarModule
   ],
   declarations: [HomePage]
 })

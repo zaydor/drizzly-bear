@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
+import { DrizzlyToolbarModule } from './drizzly-toolbar/drizzly-toolbar.module';
 
 @NgModule({
   declarations: [AppComponent],
