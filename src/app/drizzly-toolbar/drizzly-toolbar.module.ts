@@ -10,6 +10,7 @@ import { DrizzlyToolbarComponent } from "./drizzly-toolbar.component";
         CommonModule,
         IonicModule,
     ],
+
     exports: [DrizzlyToolbarComponent],
     declarations: [DrizzlyToolbarComponent]
 })

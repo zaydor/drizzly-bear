@@ -14,7 +14,7 @@ import { DrizzlyToolbarModule } from './drizzly-toolbar/drizzly-toolbar.module';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, DrizzlyToolbarModule],
   providers: [HttpClient, HttpClientModule, Geolocation, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

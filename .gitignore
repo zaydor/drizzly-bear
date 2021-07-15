@@ -31,3 +31,5 @@ npm-debug.log*
 /www
 
 /android
+
+bing-maps-key.ts

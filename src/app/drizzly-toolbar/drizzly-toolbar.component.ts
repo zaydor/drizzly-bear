@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-drizzly-toolbar',
@@ -7,8 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DrizzlyToolbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
+
+  goToWeatherInfoPage() {
+    console.log("weather info page");
+    this.router.navigate(['weather-info']);
+  }
+
+  goToHomePage() {
+    console.log("home page");
+    this.router.navigate(['home']);
+  }
+
+  goToSettingsPage() {
+    console.log("settings page");
+    this.router.navigate(['settings']);
+  }
 
 }
