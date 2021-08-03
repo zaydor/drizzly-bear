@@ -10,6 +10,7 @@ import { BingMapsKey } from '../bing-maps-key';
 import { DrizzlyToolbarComponent } from '../drizzly-toolbar/drizzly-toolbar.component';
 import { ModalController } from '@ionic/angular';
 import { WeatherInfoPage } from '../weather-info/weather-info.page';
+import { WeatherDataService } from '../weather-data.service';
 
 @Component({
   selector: 'app-home',
@@ -29,7 +30,7 @@ export class HomePage {
   bingMapKey: BingMapsKey;
   modalController: any;
 
-  constructor(private geolocation: Geolocation, private http: HttpClient, modalController: ModalController) {
+  constructor(private geolocation: Geolocation, private http: HttpClient, modalController: ModalController, private weatherDataService: WeatherDataService) {
     // this.getMapLoc();
     this.modalController = modalController;
   }
@@ -88,6 +89,7 @@ export class HomePage {
       }
       this.forecastProperties = ((res as WeatherApiForecastInterface).properties as WeatherApiForecastPropsInterface);
       console.log(this.forecastProperties.periods);
+      this.weatherDataService.setData(this.forecastProperties.periods);
       this.text = `${this.forecastProperties.periods[0]?.temperature}\xB0F`;
       this.locationText = `${this.userCity}, ${this.userState}`;
     }).catch((e) => console.log(e));
