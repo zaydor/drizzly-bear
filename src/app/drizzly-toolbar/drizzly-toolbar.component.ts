@@ -17,7 +17,7 @@ export class DrizzlyToolbarComponent implements OnInit {
 
   goToWeatherInfoPage() {
     console.log("weather info page");
-    this.router.navigate(['weather-info'], { state: { id: 1, name: this.data } });
+    this.router.navigate(['weather-info']);
   }
 
   goToHomePage() {
