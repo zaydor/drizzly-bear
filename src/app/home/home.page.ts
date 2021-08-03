@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Injectable } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { HttpClient } from '@angular/common/http';
 import { WeatherApiPointsInterface } from '../weather-api/weather-api-points-interface';
@@ -7,6 +7,9 @@ import { WeatherApiForecastInterface } from '../weather-api/weather-api-forecast
 import { WeatherApiForecastPropsInterface } from '../weather-api/weather-api-forecast-props-interface';
 import { WeatherApiLocationPropsInterface } from '../weather-api/weather-api-location-props-interface';
 import { BingMapsKey } from '../bing-maps-key';
+import { DrizzlyToolbarComponent } from '../drizzly-toolbar/drizzly-toolbar.component';
+import { ModalController } from '@ionic/angular';
+import { WeatherInfoPage } from '../weather-info/weather-info.page';
 
 @Component({
   selector: 'app-home',
@@ -21,15 +24,28 @@ export class HomePage {
   userCity: string;
   userState: string;
   weatherURL = "https://api.weather.gov/points/";
+  weatherURL2 = "";
   forecastProperties: WeatherApiForecastPropsInterface;
   bingMapKey: BingMapsKey;
+  modalController: any;
 
-  constructor(private geolocation: Geolocation, private http: HttpClient) {
-    this.getMapLoc();
+  constructor(private geolocation: Geolocation, private http: HttpClient, modalController: ModalController) {
+    // this.getMapLoc();
+    this.modalController = modalController;
+  }
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: WeatherInfoPage,
+      componentProps: {
+        'forecastProperties': this.forecastProperties
+      }
+    });
+    return await modal.present();
   }
 
   public getMapLoc() {
-    this.http.get
+    // this.http.get
   }
 
   public getLocation(event?) {

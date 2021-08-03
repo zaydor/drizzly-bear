@@ -8,6 +8,7 @@ import { WeatherInfoPageRoutingModule } from './weather-info-routing.module';
 
 import { WeatherInfoPage } from './weather-info.page';
 import { DrizzlyToolbarModule } from '../drizzly-toolbar/drizzly-toolbar.module';
+import { HomePageModule } from '../home/home.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { DrizzlyToolbarModule } from '../drizzly-toolbar/drizzly-toolbar.module'
     FormsModule,
     IonicModule,
     WeatherInfoPageRoutingModule,
-    DrizzlyToolbarModule
+    DrizzlyToolbarModule,
+    HomePageModule
   ],
   declarations: [WeatherInfoPage]
 })

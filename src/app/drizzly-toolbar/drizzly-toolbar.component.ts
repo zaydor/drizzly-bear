@@ -7,14 +7,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./drizzly-toolbar.component.scss'],
 })
 export class DrizzlyToolbarComponent implements OnInit {
+  data: string;
 
-  constructor(private router: Router) { }
+  constructor(private router?: Router) {
+    console.log("from drizzly");
+  }
 
   ngOnInit() { }
 
   goToWeatherInfoPage() {
     console.log("weather info page");
-    this.router.navigate(['weather-info']);
+    this.router.navigate(['weather-info'], { state: { id: 1, name: this.data } });
   }
 
   goToHomePage() {
