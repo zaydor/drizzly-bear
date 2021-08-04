@@ -13,70 +13,32 @@
         </ion-card-header>
 
         <ion-card-content>
-          {{this.forecast}}
+          {{this.currForecast}}
         </ion-card-content>
       </ion-card>
     </ion-row>
     <ion-row>
-      <ion-col>
+      <ion-col *ngFor="let forecast of this.forecastArr; let i = index">
         <ion-card>
           <ion-card-header>
-            <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-            <ion-card-title>Card Title</ion-card-title>
+            <ion-card-subtitle>{{forecast.shortForecast}}</ion-card-subtitle>
+            <ion-card-title>{{forecast.name}}</ion-card-title>
           </ion-card-header>
 
           <ion-card-content>
-            Keep close to Nature's heart... and break clear away, once in awhile,
-            and climb a mountain or spend a week in the woods. Wash your spirit clean.
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-      <ion-col>
-        <ion-card>
-          <ion-card-header>
-            <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-            <ion-card-title>Card Title</ion-card-title>
-          </ion-card-header>
+            <ion-grid>
+              <ion-row>
+                {{forecast.temperature}}&deg;F
+              </ion-row>
+              <ion-row>
+                {{forecast.windSpeed}} {{forecast.windDirection}}
+              </ion-row>
+            </ion-grid>
 
-          <ion-card-content>
-            Keep close to Nature's heart... and break clear away, once in awhile,
-            and climb a mountain or spend a week in the woods. Wash your spirit clean.
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-card>
-          <ion-card-header>
-            <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-            <ion-card-title>Card Title</ion-card-title>
-          </ion-card-header>
-
-          <ion-card-content>
-            Keep close to Nature's heart... and break clear away, once in awhile,
-            and climb a mountain or spend a week in the woods. Wash your spirit clean.
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-      <ion-col>
-        <ion-card>
-          <ion-card-header>
-            <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-            <ion-card-title>Card Title</ion-card-title>
-          </ion-card-header>
-
-          <ion-card-content>
-            Keep close to Nature's heart... and break clear away, once in awhile,
-            and climb a mountain or spend a week in the woods. Wash your spirit clean.
           </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
-
-  <ion-button (click)="dismiss()">
-    Leave
-  </ion-button>
 
 </ion-content>
