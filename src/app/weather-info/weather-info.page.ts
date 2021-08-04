@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { WeatherDataService } from '../weather-data.service';
 
 @Component({
@@ -7,32 +7,38 @@ import { WeatherDataService } from '../weather-data.service';
   styleUrls: ['./weather-info.page.scss'],
 })
 export class WeatherInfoPage {
-  forecast: Object;
+  forecastArr: {
+    detailedForecast: string,
+    shortForecast: string,
+    name: string,
+    temperature: number,
+    windDirection: string,
+    windSpeed: string
+  }[] = [];
   data: any;
+  currForecast: string;
+  currWind: string;
 
   constructor(private weatherDataService: WeatherDataService) {
-    this.data = this.weatherDataService.getData();
-    console.log(this.data);
-  }
-  // storeForecasts() {
-  //   const length = this.forecastProperties.periods.length;
-  //   for (let i = 0; i < length; i++) {
-  //     this.forecastArr.push({
-  //       detailedForecast: this.forecastProperties.periods[i].detailedForecast,
-  //       shortForecast: this.forecastProperties.periods[i].shortForecast,
-  //       name: this.forecastProperties.periods[i].name,
-  //       temperature: this.forecastProperties.periods[i].temperature,
-  //       windDirection: this.forecastProperties.periods[i].windDirection,
-  //       windSpeed: this.forecastProperties.periods[i].windSpeed
-  //     });
-  //   }
-}
+    this.data = this.weatherDataService.getData(); // get weather data from service
+    this.storeForecasts(this.data); // store forecasts into an array
 
-/*
-  detailedForecast: string, // only used for current forecast
-  shortForecast: string, // used for icon
-  name: string, // used to tell the time of day for forecast
-  temperature: number,
-  windDirection: string, // only used for current forecast
-  windSpeed: string // only used for current forecast
-*/
+  }
+
+  private storeForecasts(forecasts) {
+    const length = forecasts.length;
+    for (let i = 0; i < length; i++) {
+      this.forecastArr.push({
+        detailedForecast: forecasts[i].detailedForecast,
+        shortForecast: forecasts[i].shortForecast,
+        name: forecasts[i].name,
+        temperature: forecasts[i].temperature,
+        windDirection: forecasts[i].windDirection,
+        windSpeed: forecasts[i].windSpeed
+      });
+    }
+
+    this.currForecast = this.forecastArr[0].detailedForecast;
+  }
+
+}
