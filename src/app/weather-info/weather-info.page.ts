@@ -20,14 +20,13 @@ export class WeatherInfoPage {
   currForecast: string;
   currWind: string;
 
-  currPage: string = "forecast";
   tempUnit: string;
   windUnit: string;
 
   constructor(private weatherDataService: WeatherDataService, private settingsInfoService: SettingsInfoService) {
     this.data = this.weatherDataService.getData(); // get weather data from service
 
-    this.settingsInfoService.setCurrPage(this.currPage);
+    this.settingsInfoService.setCurrPage("forecasts");
     this.tempUnit = this.settingsInfoService.getTempUnits();
     this.windUnit = this.settingsInfoService.getWindUnits();
 
@@ -38,7 +37,7 @@ export class WeatherInfoPage {
   ionViewWillEnter() {
     this.data = this.weatherDataService.getData(); // get weather data from service
 
-    this.settingsInfoService.setCurrPage(this.currPage);
+    this.settingsInfoService.setCurrPage("forecasts");
     this.tempUnit = this.settingsInfoService.getTempUnits();
     this.windUnit = this.settingsInfoService.getWindUnits();
 
