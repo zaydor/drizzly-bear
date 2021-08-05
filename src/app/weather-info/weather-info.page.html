@@ -7,17 +7,6 @@
 <ion-content>
   <ion-grid style="margin-bottom: 20%;">
     <ion-row>
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title>Forecast</ion-card-title>
-        </ion-card-header>
-
-        <ion-card-content>
-          {{this.currForecast}}
-        </ion-card-content>
-      </ion-card>
-    </ion-row>
-    <ion-row>
       <ion-col *ngFor="let forecast of this.forecastArr; let i = index">
         <ion-card>
           <ion-card-header>
@@ -28,7 +17,7 @@
           <ion-card-content>
             <ion-grid>
               <ion-row>
-                {{forecast.temperature}}&deg;F
+                {{forecast.temperature}}&deg;{{this.getTempUnit().toUpperCase()}}
               </ion-row>
               <ion-row>
                 {{forecast.windSpeed}} {{forecast.windDirection}}

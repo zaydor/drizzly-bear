@@ -1,4 +1,4 @@
-import { Component, Injectable } from '@angular/core';
+import { Component } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { HttpClient } from '@angular/common/http';
 import { WeatherApiPointsInterface } from '../weather-api/weather-api-points-interface';
@@ -7,10 +7,8 @@ import { WeatherApiForecastInterface } from '../weather-api/weather-api-forecast
 import { WeatherApiForecastPropsInterface } from '../weather-api/weather-api-forecast-props-interface';
 import { WeatherApiLocationPropsInterface } from '../weather-api/weather-api-location-props-interface';
 import { BingMapsKey } from '../bing-maps-key';
-import { DrizzlyToolbarComponent } from '../drizzly-toolbar/drizzly-toolbar.component';
-import { ModalController } from '@ionic/angular';
-import { WeatherInfoPage } from '../weather-info/weather-info.page';
 import { WeatherDataService } from '../weather-data.service';
+import { SettingsInfoService } from '../settings-info.service';
 
 @Component({
   selector: 'app-home',
@@ -28,21 +26,22 @@ export class HomePage {
   weatherURL2 = "";
   forecastProperties: WeatherApiForecastPropsInterface;
   bingMapKey: BingMapsKey;
-  modalController: any;
+  private data: any;
 
-  constructor(private geolocation: Geolocation, private http: HttpClient, modalController: ModalController, private weatherDataService: WeatherDataService) {
+  constructor(private geolocation: Geolocation, private http: HttpClient, private weatherDataService: WeatherDataService, private settingsInfoService: SettingsInfoService) {
     // this.getMapLoc();
-    this.modalController = modalController;
+
   }
 
-  async presentModal() {
-    const modal = await this.modalController.create({
-      component: WeatherInfoPage,
-      componentProps: {
-        'forecastProperties': this.forecastProperties
-      }
-    });
-    return await modal.present();
+  ionViewWillEnter() {
+    this.data = this.weatherDataService.getData();
+    if (this.data == undefined) {
+      console.log('data is undefined');
+    } else {
+      console.log('data is defined');
+      console.log(this.data[0]);
+      this.text = `${this.data[0].temperature}\xB0${this.settingsInfoService.getTempUnits().toUpperCase()}`;
+    }
   }
 
   public getMapLoc() {
@@ -90,7 +89,7 @@ export class HomePage {
       this.forecastProperties = ((res as WeatherApiForecastInterface).properties as WeatherApiForecastPropsInterface);
       console.log(this.forecastProperties.periods);
       this.weatherDataService.setData(this.forecastProperties.periods);
-      this.text = `${this.forecastProperties.periods[0]?.temperature}\xB0F`;
+      this.text = `${this.forecastProperties.periods[0]?.temperature}\xB0${this.settingsInfoService.getTempUnits().toUpperCase()}`;
       this.locationText = `${this.userCity}, ${this.userState}`;
     }).catch((e) => console.log(e));
   }

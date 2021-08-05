@@ -1,9 +1,76 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>settings</ion-title>
+    <ion-title>Settings</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <ion-grid>
+    <ion-row>
+
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Temperature Units</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-list>
+              <ion-radio-group value="{{this.getCurrTempRadio()}}" (ionChange)="radioTempUnitSelect($event)">
+
+                <ion-item (ionSelect)="radioTempUnitSelect($event)">
+                  <ion-label>Fahrenheit</ion-label>
+                  <ion-radio slot="start" value="f"></ion-radio>
+                </ion-item>
+
+                <ion-item (ionSelect)="radioTempUnitSelect($event)">
+                  <ion-label>Celsius</ion-label>
+                  <ion-radio slot="start" value="c"></ion-radio>
+                </ion-item>
+
+                <ion-item (ionSelect)="radioTempUnitSelect($event)">
+                  <ion-label>Kelvin</ion-label>
+                  <ion-radio slot="start" value="k"></ion-radio>
+                </ion-item>
+
+              </ion-radio-group>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Wind Units</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-list>
+              <ion-radio-group value="{{this.getCurrWindRadio()}}" (ionChange)="radioWindUnitSelect($event)">
+
+                <ion-item (ionSelect)="radioWindUnitSelect($event)">
+                  <ion-label>Miles Per Hour</ion-label>
+                  <ion-radio slot="start" value="mph"></ion-radio>
+                </ion-item>
+
+                <ion-item (ionSelect)="radioWindUnitSelect($event)">
+                  <ion-label>Meters Per Second</ion-label>
+                  <ion-radio slot="start" value="ms"></ion-radio>
+                </ion-item>
+
+                <ion-item (ionSelect)="radioWindUnitSelect($event)">
+                  <ion-label>Knots</ion-label>
+                  <ion-radio slot="start" value="knots"></ion-radio>
+                </ion-item>
+
+              </ion-radio-group>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 
 </ion-content>

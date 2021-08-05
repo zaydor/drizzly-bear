@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SettingsInfoService } from '../settings-info.service';
 import { WeatherDataService } from '../weather-data.service';
 
 @Component({
@@ -19,10 +20,31 @@ export class WeatherInfoPage {
   currForecast: string;
   currWind: string;
 
-  constructor(private weatherDataService: WeatherDataService) {
+  currPage: string = "forecast";
+  tempUnit: string;
+  windUnit: string;
+
+  constructor(private weatherDataService: WeatherDataService, private settingsInfoService: SettingsInfoService) {
     this.data = this.weatherDataService.getData(); // get weather data from service
+
+    this.settingsInfoService.setCurrPage(this.currPage);
+    this.tempUnit = this.settingsInfoService.getTempUnits();
+    this.windUnit = this.settingsInfoService.getWindUnits();
+
     this.storeForecasts(this.data); // store forecasts into an array
 
+  }
+
+  ionViewWillEnter() {
+    this.data = this.weatherDataService.getData(); // get weather data from service
+
+    this.settingsInfoService.setCurrPage(this.currPage);
+    this.tempUnit = this.settingsInfoService.getTempUnits();
+    this.windUnit = this.settingsInfoService.getWindUnits();
+
+    this.forecastArr = [];
+
+    this.storeForecasts(this.data); // store forecasts into an array
   }
 
   private storeForecasts(forecasts) {
@@ -40,5 +62,10 @@ export class WeatherInfoPage {
 
     this.currForecast = this.forecastArr[0].detailedForecast;
   }
+
+  public getTempUnit() {
+    return this.settingsInfoService.getTempUnits().toUpperCase();
+  }
+
 
 }
