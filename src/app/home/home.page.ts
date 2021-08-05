@@ -30,11 +30,18 @@ export class HomePage {
 
   constructor(private geolocation: Geolocation, private http: HttpClient, private weatherDataService: WeatherDataService, private settingsInfoService: SettingsInfoService) {
     // this.getMapLoc();
+    this.data = this.weatherDataService.getData();
+    if (this.data == undefined) {
+      this.settingsInfoService.isDataAvailable = false;
+    } else {
+      this.settingsInfoService.isDataAvailable = true;
+    }
 
   }
 
   ionViewWillEnter() {
     this.data = this.weatherDataService.getData();
+    this.settingsInfoService.setCurrPage("home");
     if (this.data == undefined) {
       console.log('data is undefined');
     } else {
@@ -49,8 +56,8 @@ export class HomePage {
   }
 
   public getLocation(event?) {
+    this.text = "";
     this.geolocation.getCurrentPosition().then((resp) => {
-      this.text = `${resp.coords.latitude}, ${resp.coords.longitude}`;
       this.userLat = resp.coords.latitude;
       this.userLon = resp.coords.longitude;
       if (event) {
@@ -91,6 +98,7 @@ export class HomePage {
       this.weatherDataService.setData(this.forecastProperties.periods);
       this.text = `${this.forecastProperties.periods[0]?.temperature}\xB0${this.settingsInfoService.getTempUnits().toUpperCase()}`;
       this.locationText = `${this.userCity}, ${this.userState}`;
+      this.settingsInfoService.isDataAvailable = true;
     }).catch((e) => console.log(e));
   }
 }

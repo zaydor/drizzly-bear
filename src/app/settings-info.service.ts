@@ -16,6 +16,8 @@ export class SettingsInfoService {
   private windUnits: string = 'mph';
   private currPage: string = 'home'; // either 'home', 'settings', or 'forecasts'
 
+  public isDataAvailable: boolean = false;
+
   public getTempUnits(): string {
     return this.tempUnits;
   }

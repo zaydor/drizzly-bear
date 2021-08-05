@@ -15,6 +15,11 @@ export class SettingsPage {
     this.data = this.weatherDataService.getData();
   }
 
+  ionViewWillEnter() {
+    this.data = this.weatherDataService.getData();
+    this.settingsInfoService.setCurrPage("settings");
+  }
+
   getCurrTempRadio() {
     return this.settingsInfoService.getTempUnits();
   }
