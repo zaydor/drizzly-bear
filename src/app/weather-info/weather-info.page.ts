@@ -34,6 +34,7 @@ export class WeatherInfoPage {
 
   }
 
+  // ensures forecast page has updated data
   ionViewWillEnter() {
     this.data = this.weatherDataService.getData(); // get weather data from service
 
@@ -46,6 +47,7 @@ export class WeatherInfoPage {
     this.storeForecasts(this.data); // store forecasts into an array
   }
 
+  // stores the weather data into an array of objects
   private storeForecasts(forecasts) {
     const length = forecasts.length;
     for (let i = 0; i < length; i++) {
@@ -62,6 +64,7 @@ export class WeatherInfoPage {
     this.currForecast = this.forecastArr[0].detailedForecast;
   }
 
+  // gets the temp units
   public getTempUnit() {
     return this.settingsInfoService.getTempUnits().toUpperCase();
   }
