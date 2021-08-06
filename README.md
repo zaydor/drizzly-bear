@@ -1,7 +1,7 @@
 # Drizzly Bear
 The *free* minimalist weather app.
 
-This is the second mobile app by Zaydor Studios, the one man wrecking crew that insists of the lone developer, Isaiah Dorado (me).
+This is the second mobile app by Zaydor Studios, the one man wrecking crew that consists of the lone developer, Isaiah Dorado (me).
 
 This app was made with Angular and Ionic.
 
