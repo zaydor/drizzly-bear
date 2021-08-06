@@ -39,6 +39,7 @@ export class HomePage {
 
   }
 
+  // ensures page has updated data
   ionViewWillEnter() {
     this.data = this.weatherDataService.getData();
     this.settingsInfoService.setCurrPage("home");
@@ -51,10 +52,14 @@ export class HomePage {
     }
   }
 
+  // --- unfinished ---
+  // in a new update, add a feature to change location to get weather from
+  // this function will be where the api call for that exists
   public getMapLoc() {
     // this.http.get
   }
 
+  // api call to get the users current location
   public getLocation(event?) {
     this.text = "";
     this.geolocation.getCurrentPosition().then((resp) => {
@@ -70,6 +75,7 @@ export class HomePage {
     });
   }
 
+  // api call to get the forecast of the users current location
   public getForecastApi(userLat: number, userLon: number, event?) {
     this.http.get(`${this.weatherURL}${userLat.toFixed(4)},${userLon.toFixed(4)}`).toPromise().then((res) => {
       console.log(res);
@@ -88,10 +94,11 @@ export class HomePage {
     }).catch((e) => console.log(e));
   }
 
+  // parse through the returned weather data
   public getForecast(forecastAPI: string, event?) {
     this.http.get(forecastAPI).toPromise().then((res) => {
       if (event) {
-        event.target.complete();
+        event.target.complete(); // finishes the refreshing animation
       }
       this.forecastProperties = ((res as WeatherApiForecastInterface).properties as WeatherApiForecastPropsInterface);
       console.log(this.forecastProperties.periods);
